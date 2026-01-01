@@ -30,8 +30,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Test echo
-      run: echo "test"
     - name: Simulate build
       run: |
         ls -l
@@ -40,9 +38,3 @@ jobs:
         echo "This is DPTA-1234"
         sleep 6
         echo "Finished build process"
-    - name: Dispatch build event
-      if: github.event_name == 'pull_request'
-      run: |
-        gh api /repos/amisovic/orchestrator/dispatches -f event_type=build -f client_payload[action]=build -f client_payload[branch]=${{ github.head_ref }} -f client_payload[sha]=${{ github.event.pull_request.head.sha }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.PAT_WORKFLOWS }}
