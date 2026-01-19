@@ -20,6 +20,5 @@ jobs:
       run: |
         ls -l
         cat repoB.txt || true
-        echo "This build process for application B"
-        sleep 5
-        exit 1
+        echo "This build process for application B ... "
+        sleep 3
